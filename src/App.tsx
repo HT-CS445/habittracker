@@ -33,6 +33,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 setupIonicReact();
 
@@ -41,6 +43,12 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          <Route exact path="/Login">
+            <Login />
+          </Route>
+          <Route exact path = "/Register">
+            <Register />
+          </Route>
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
