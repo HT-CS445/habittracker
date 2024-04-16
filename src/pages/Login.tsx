@@ -1,18 +1,22 @@
+import React, { useState } from 'react';
 import { IonButton, IonCard, IonCardContent, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
+import { useHistory } from 'react-router-dom';  //useHistory is a hook provided by react-router-dom that lets you access the history instance used for navigation
 import { logInOutline } from 'ionicons/icons';
 import LoginImage from '../assets/LoginImage.png'; 
 import { signInWithGoogle } from '../authService'; // Import the signInWithGoogle function
 
 const Login: React.FC = () => {
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const history = useHistory();
+
     const handleGoogleLogin = async () => {
         try {
             const user = await signInWithGoogle();
             console.log('User signed in:', user);
-            // Optionally redirect the user or do some other post-login action
+            history.replace('/home'); // This will navigate to home and replace the current entry in the history stack.
         } catch (error) {
             console.error('Login failed:', error);
-            // Handle login errors (e.g., display an alert or message)
+            setErrorMessage("Failed to log in. Please try again.");
         }
     };
 
@@ -33,6 +37,11 @@ const Login: React.FC = () => {
                             Sign in with Google
                             <IonIcon icon={logInOutline} slot="end" />
                         </IonButton>
+                        {errorMessage && ( // This will render the error message when it's not an empty string
+                            <div className="error-message">
+                            {errorMessage}
+                            </div>
+                        )}
                     </IonCardContent>
                 </IonCard>
             </IonContent>

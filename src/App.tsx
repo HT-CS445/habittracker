@@ -10,8 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from 'ionicons/icons';
-import Tab1 from './pages/Home';
+import Home from './pages/Home';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
@@ -34,7 +33,6 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Login from './pages/Login';
-import Register from './pages/Register';
 
 setupIonicReact();
 
@@ -44,13 +42,12 @@ It allows you to define different views for each tab and navigate between them s
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs> 
         <IonRouterOutlet> 
           <Route exact path="/Login"> 
             <Login />
           </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <Home />
           </Route>
           <Route exact path="/tab2">
             <Tab2 />
@@ -62,21 +59,6 @@ const App: React.FC = () => (
             <Redirect to="/Login" />  
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1"> 
-            <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Add</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={barChartOutline} />
-            <IonLabel>Analyze</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
