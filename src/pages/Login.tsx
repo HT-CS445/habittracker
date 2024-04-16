@@ -1,42 +1,40 @@
-import { IonButton, IonCard, IonCardContent, IonContent, IonFooter, IonHeader, IonIcon, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonContent, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import React from 'react';
-import { logInOutline, personCircleOutline } from 'ionicons/icons';
+import { logInOutline } from 'ionicons/icons';
 import LoginImage from '../assets/LoginImage.png'; 
-
+import { signInWithGoogle } from '../authService'; // Import the signInWithGoogle function
 
 const Login: React.FC = () => {
-    const doLogin = (event: any) => {
-        event.preventDefault();
-        console.log('doLogin');
-    }
+    const handleGoogleLogin = async () => {
+        try {
+            const user = await signInWithGoogle();
+            console.log('User signed in:', user);
+            // Optionally redirect the user or do some other post-login action
+        } catch (error) {
+            console.error('Login failed:', error);
+            // Handle login errors (e.g., display an alert or message)
+        }
+    };
+
     return (
         <IonPage>
             <IonHeader className= "ion-text-center">
-                <IonToolbar color = {'primary'}>
+                <IonToolbar color={'primary'}>
                     <IonTitle>Habit Tracker</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent class="ion-padding">
-            <IonContent scrollY ={false}>
+            <IonContent className="ion-padding">
                 <div className="ion-text-center ion-padding-top ion-margin-top">
-                <img src={LoginImage} alt='healthy habits icon'/>
+                    <img src={LoginImage} alt='healthy habits icon'/>
                 </div>
                 <IonCard>
-                    <IonCardContent class = "ion-padding">
-                        <form onSubmit={doLogin}>
-                            <IonInput label="email" type='email' fill='outline' labelPlacement='floating' > </IonInput>
-                            <IonInput className="ion-margin-top" fill='outline' label="password" type='password' labelPlacement='floating' > </IonInput>
-                            <IonButton routerLink="/tab1" color={'secondary'} type='submit' expand='block' className='ion-margin-top'>
-                                Login
-                                <IonIcon icon={logInOutline} slot="end" />    
-                            </IonButton>
-                            <IonButton routerLink="/register" color={'tertiary'} type='button' expand='block'>Create Account
-                            <IonIcon icon={personCircleOutline} slot="end" />   
-                            </IonButton> 
-                        </form>
+                    <IonCardContent className="ion-padding">
+                        <IonButton color={'secondary'} expand='block' className='ion-margin-top' onClick={handleGoogleLogin}>
+                            Sign in with Google
+                            <IonIcon icon={logInOutline} slot="end" />
+                        </IonButton>
                     </IonCardContent>
                 </IonCard>
-            </IonContent>
             </IonContent>
         </IonPage>
     );

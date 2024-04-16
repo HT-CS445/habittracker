@@ -44,13 +44,10 @@ It allows you to define different views for each tab and navigate between them s
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs> { /*This component defines a tab-based navigation layout in your Ionic application. It contains one or more <IonTabButton> components that represent each tab in the tab bar.*/ }
-        <IonRouterOutlet> { /* Inside <IonRouterOutlet>, define routes using <Route> components from react-router-dom. Each <Route> specifies a path and the component to render when that path matches the current URL. */ }
-          <Route exact path="/Login"> { /* <Route> components define the routes for the app. The exact prop ensures that the specified component is only rendered when the URL matches the path exactly. */ }
+      <IonTabs> 
+        <IonRouterOutlet> 
+          <Route exact path="/Login"> 
             <Login />
-          </Route>
-          <Route exact path = "/Register">
-            <Register />
           </Route>
           <Route exact path="/tab1">
             <Tab1 />
@@ -62,11 +59,11 @@ const App: React.FC = () => (
             <Tab3 />
           </Route>
           <Route exact path="/">
-            <Redirect to="/Login" />  { /* <Redirect> component is used to redirect users from one URL to another. In your code, the route with path="/", which matches the root URL, is redirected to /Login using <Redirect to="/Login" />. */ }
+            <Redirect to="/Login" />  
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1"> { /* <IonTabButton> components define the tabs in your tab bar. Each <IonTabButton> corresponds to a route defined in the <IonRouterOutlet>. When a tab is clicked, it navigates to the corresponding route specified in the href prop. */ }
+          <IonTabButton tab="tab1" href="/tab1"> 
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
