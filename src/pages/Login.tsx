@@ -3,6 +3,7 @@ import React from 'react';
 import { logInOutline, personCircleOutline } from 'ionicons/icons';
 import LoginImage from '../assets/LoginImage.png'; 
 
+
 const Login: React.FC = () => {
     const doLogin = (event: any) => {
         event.preventDefault();
