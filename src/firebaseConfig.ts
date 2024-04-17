@@ -10,6 +10,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 // Import the functions you need from the Firebase SDKs you need
 import { initializeApp } from "firebase/app"; // imports the initializeApp function from the Firebase SDK's app module. The initializeApp function is used to initialize  your web app with Firebase's services using the specific configuration details you provide (like your project's API key, auth domain, project ID, etc.). When you call initializeApp with your Firebase configuration object, it sets up your  application to communicate with Firebase services, enabling you to use them (like Firestore, Auth, Analytics, and more) in your app.
+import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";  //import the Firebase Analytics service into Taam
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,10 +37,11 @@ const firebaseConfig = {
 //Initialization is about "starting those Firebase services with those settings so I can use them."
 const app = initializeApp(firebaseConfig);  //initializes Firebase with the provided configuration.
 const analytics = getAnalytics(app);  // Services like Analytics (and potentially others like Auth, Firestore, etc., if used) are initialized right away in the same file.
-
+const db = getFirestore(app);
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                        Exports                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 //The initialized app instance and any Firebase services are then exported. These exports can be imported into other parts of your application where Firebase functionality is needed.
+export default db;
 export { app, analytics };
