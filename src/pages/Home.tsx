@@ -68,6 +68,20 @@ const Home: React.FC = () => {
         </IonList>
         {selectedDocId && <IonButton onClick={() => handleUpdate(selectedDocId)}>Update Document</IonButton>}
       </IonContent>
+      <IonTabBar slot="bottom">
+          <IonTabButton tab="home" href="/home"> 
+            <IonIcon aria-hidden="true" icon={accessibilityOutline} />
+            <IonLabel>Home</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon aria-hidden="true" icon={sparklesOutline} />
+            <IonLabel>Add</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon aria-hidden="true" icon={barChartOutline} />
+            <IonLabel>Analyze</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
     </IonPage>
   );
 };
