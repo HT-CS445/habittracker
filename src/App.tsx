@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/Home';
+import Home from './pages/AddHabit';
 import Tracking from './pages/Tracking';
 import DataVisualization from './pages/DataVisualization';
 
@@ -46,7 +46,7 @@ const App: React.FC = () => (
           <Route exact path="/Login"> 
             <Login />
           </Route>
-          <Route exact path="/home">
+          <Route exact path="/addhabit">
             <Home />
           </Route>
           <Route exact path="/tracking">

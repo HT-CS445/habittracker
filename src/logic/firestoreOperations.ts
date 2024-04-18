@@ -5,8 +5,9 @@ import { FirebaseError } from "firebase/app";
 
 interface UserDocument {
   id: string;    // Assuming you use the document ID from Firestore
-  name: string;
-  age: number;
+  habit: string;
+  priority: 'High' | 'Medium' | 'Low';
+  frequency: number;
   userId: string;
   completed: boolean;
 }
