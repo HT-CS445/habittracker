@@ -107,11 +107,11 @@ const Home: React.FC = () => {
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tracking" href="/tracking">
             <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Add</IonLabel>
+            <IonLabel>Tracking</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="datavisualization" href="/datavisualization">
             <IonIcon aria-hidden="true" icon={barChartOutline} />
             <IonLabel>Analyze</IonLabel>
           </IonTabButton>

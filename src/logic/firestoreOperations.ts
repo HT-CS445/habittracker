@@ -8,6 +8,7 @@ interface UserDocument {
   name: string;
   age: number;
   userId: string;
+  completed: boolean;
 }
 // User's UID helper function
 const getUserId = (): string => {
