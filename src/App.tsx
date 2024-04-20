@@ -1,4 +1,4 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom'; // import for routing
 import {
   IonApp,
   IonIcon,
@@ -10,8 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from 'ionicons/icons';
-import Tab1 from './pages/Home';
+import Home from './pages/Home';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
 
@@ -34,23 +33,21 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Login from './pages/Login';
-import Register from './pages/Register';
 
 setupIonicReact();
 
+/*Routing setup!
+This setup combines Ionic's tab-based navigation with React Router for handling routing within your application. 
+It allows you to define different views for each tab and navigate between them seamlessly. */ 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/Login">
+        <IonRouterOutlet> 
+          <Route exact path="/Login"> 
             <Login />
           </Route>
-          <Route exact path = "/Register">
-            <Register />
-          </Route>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <Home />
           </Route>
           <Route exact path="/tab2">
             <Tab2 />
@@ -59,24 +56,9 @@ const App: React.FC = () => (
             <Tab3 />
           </Route>
           <Route exact path="/">
-            <Redirect to="/Login" />
+            <Redirect to="/Login" />  
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Home</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Add</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={barChartOutline} />
-            <IonLabel>Analyze</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );
