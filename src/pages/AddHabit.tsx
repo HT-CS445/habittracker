@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { IonContent, IonAlert, IonHeader, IonPage, IonTitle, IonToolbar, IonTabBar, IonTabButton, IonIcon, IonLabel, IonInput, IonButton, IonList, IonItem, IonSelect, IonSelectOption } from '@ionic/react';
 import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from 'ionicons/icons';
+import { addDocument, fetchDocuments, updateDocument, deleteDocument } from '../firestoreService';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { addDocument, fetchDocuments, updateDocument, deleteDocument } from '../logic/firestoreOperations.js';
-import ExploreContainer from '../components/ExploreContainer.js';
 import './AddHabit.css';
 
 const Home: React.FC = () => {
@@ -11,7 +10,6 @@ const Home: React.FC = () => {
   const [inputData, setInputData] = useState({ habit: '', priority: '' as 'High' | 'Medium' | 'Low', frequency: '' });
   const [user, setUser] = useState<any>(null);
   const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
-
   const [frequencyError, setFrequencyError] = useState<string>('');
 
   useEffect(() => {
@@ -28,16 +26,6 @@ const Home: React.FC = () => {
     });
     return () => unsubscribe();  // Clean up the subscription
   }, []);
-
-  const loadDocuments = async () => {
-    if (!user) return;
-    try {
-      const docs = await fetchDocuments("users");
-      setDocuments(docs);
-    } catch (error) {
-      console.error("Failed to fetch documents:", error);
-    }
-  };
 
   const handleAdd = async () => {
     if (!user) {
@@ -63,7 +51,19 @@ const Home: React.FC = () => {
       console.error("Failed to add document:", error);
     }
   };
+
+  //calls fetchDocuments to fetch documents from Firestore
+  const loadDocuments = async () => {
+    if (!user) return;
+    try {
+      const docs = await fetchDocuments("users");
+      setDocuments(docs);
+    } catch (error) {
+      console.error("Failed to fetch documents:", error);
+    }
+  };
   
+  //updates a document in Firestore using the updateDocument function. It passes the collection name, document ID, and the new data for the document.
   const handleUpdate = async () => {
     if (!user || !selectedDocId) {
       console.log("No document selected or user not authenticated");
@@ -89,6 +89,7 @@ const Home: React.FC = () => {
     }
   };
 
+  //delete a document from Firestore using the deleteDocument function. It needs the collection name and the document ID to perform the deletion.
   const handleDelete = async (docId: string) => {
     if (!user) {
       console.log("User not authenticated");

@@ -4,7 +4,7 @@ import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from
 import { onSnapshot, query, collection, orderBy, where } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import db from '../firebaseConfig';
-import { updateDocument } from '../logic/firestoreOperations';
+import { updateDocument } from '../firestoreService';
 
 interface Habit {
     id: string;
