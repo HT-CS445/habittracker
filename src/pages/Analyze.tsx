@@ -6,12 +6,12 @@ import { Chart as ChartJS, TooltipItem, ArcElement, Legend, BarElement, Category
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import db from '../firebaseConfig';
-import './DataVisualization.css';
+import './Analyze.css';
 
 // Register ChartJS elements
 ChartJS.register(ArcElement, Legend, BarElement, CategoryScale, LinearScale);
 
-const DataVisualization: React.FC = () => {
+const Analyze: React.FC = () => {
     const [chartData, setChartData] = useState<any>();
     // Explicitly define selectedChart as a type of ChartType ('pie' or 'bar')
     const [selectedChart, setSelectedChart] = useState<ChartType>('pie');
@@ -90,15 +90,15 @@ const DataVisualization: React.FC = () => {
                 )}
             </IonContent>
             <IonTabBar slot="bottom">      
-          <IonTabButton tab="tracking" href="/tracking">
+          <IonTabButton tab="trackhabits" href="/TrackHabits">
             <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Tracking</IonLabel>
+            <IonLabel>Track Habits</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="addhabit" href="/addhabit"> 
+          <IonTabButton tab="managehabits" href="/ManageHabits"> 
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Add Habit</IonLabel>
+            <IonLabel>Manage Habits</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="datavisualization" href="/datavisualization">
+          <IonTabButton tab="analyze" href="/Analyze">
             <IonIcon aria-hidden="true" icon={barChartOutline} />
             <IonLabel>Analyze</IonLabel>
           </IonTabButton>
@@ -107,4 +107,4 @@ const DataVisualization: React.FC = () => {
     );
 };
 
-export default DataVisualization;
+export default Analyze;
