@@ -96,7 +96,7 @@ const Analyze: React.FC = () => {
           </IonTabButton>
           <IonTabButton tab="managehabits" href="/ManageHabits"> 
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Add Habit</IonLabel>
+            <IonLabel>Manage Habits</IonLabel>
           </IonTabButton>
           <IonTabButton tab="analyze" href="/Analyze">
             <IonIcon aria-hidden="true" icon={barChartOutline} />

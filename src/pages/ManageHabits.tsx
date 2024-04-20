@@ -140,7 +140,7 @@ const ManageHabits: React.FC = () => {
           </IonTabButton>
           <IonTabButton tab="managehabits" href="/ManageHabits"> 
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Manage Habit</IonLabel>
+            <IonLabel>Manage Habits</IonLabel>
           </IonTabButton>
           <IonTabButton tab="analyze" href="/Analyze">
             <IonIcon aria-hidden="true" icon={barChartOutline} />
