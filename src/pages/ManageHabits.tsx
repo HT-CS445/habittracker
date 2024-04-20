@@ -107,7 +107,7 @@ const ManageHabits: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Add Habit</IonTitle>
+          <IonTitle>Create, Update, Delete Habits</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

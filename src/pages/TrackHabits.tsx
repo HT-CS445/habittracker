@@ -61,7 +61,7 @@ const TrackHabits: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Track Habit Completion</IonTitle>
+                    <IonTitle>Track Your Habit Completions</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>

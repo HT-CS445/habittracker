@@ -75,7 +75,7 @@ const Analyze: React.FC = () => {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Data Visualization</IonTitle>
+                    <IonTitle>Analyze Your Habit Completions</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
