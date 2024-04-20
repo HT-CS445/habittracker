@@ -3,9 +3,9 @@ import { IonContent, IonAlert, IonHeader, IonPage, IonTitle, IonToolbar, IonTabB
 import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from 'ionicons/icons';
 import { addDocument, fetchDocuments, updateDocument, deleteDocument } from '../firestoreService';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import './AddHabit.css';
+import './ManageHabits.css';
 
-const Home: React.FC = () => {
+const ManageHabits: React.FC = () => {
   const [documents, setDocuments] = useState<any[]>([]);
   const [inputData, setInputData] = useState({ habit: '', priority: '' as 'High' | 'Medium' | 'Low', frequency: '' });
   const [user, setUser] = useState<any>(null);
@@ -134,15 +134,15 @@ const Home: React.FC = () => {
       </IonContent>
       
       <IonTabBar slot="bottom">      
-          <IonTabButton tab="tracking" href="/tracking">
+          <IonTabButton tab="trackhabits" href="/TrackHabits">
             <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Tracking</IonLabel>
+            <IonLabel>Track Habits</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="addhabit" href="/addhabit"> 
+          <IonTabButton tab="managehabits" href="/ManageHabits"> 
             <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Add Habit</IonLabel>
+            <IonLabel>Manage Habit</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="datavisualization" href="/datavisualization">
+          <IonTabButton tab="analyze" href="/Analyze">
             <IonIcon aria-hidden="true" icon={barChartOutline} />
             <IonLabel>Analyze</IonLabel>
           </IonTabButton>
@@ -151,4 +151,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default ManageHabits;

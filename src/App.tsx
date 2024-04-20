@@ -10,9 +10,9 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import Home from './pages/AddHabit';
-import Tracking from './pages/Tracking';
-import DataVisualization from './pages/DataVisualization';
+import ManageHabits from './pages/ManageHabits';
+import TrackHabits from './pages/TrackHabits';
+import Analyze from './pages/Analyze';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -46,14 +46,14 @@ const App: React.FC = () => (
           <Route exact path="/Login"> 
             <Login />
           </Route>
-          <Route exact path="/addhabit">
-            <Home />
+          <Route exact path="/ManageHabits">
+            <ManageHabits />
           </Route>
-          <Route exact path="/tracking">
-            <Tracking />
+          <Route exact path="/TrackHabits">
+            <TrackHabits />
           </Route>
-          <Route path="/datavisualization">
-            <DataVisualization />
+          <Route path="/Analyze">
+            <Analyze />
           </Route>
           <Route exact path="/">
             <Redirect to="/Login" />  
