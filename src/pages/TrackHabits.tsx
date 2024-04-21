@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonTabBar, IonTabButton, IonIcon, IonLabel, IonAlert, IonInput, IonButton, IonList, IonItem, IonSelect, IonSelectOption } from '@ionic/react';
-import { accessibilityOutline, sparklesOutline, barChartOutline, sparkles } from 'ionicons/icons';
-import { onSnapshot, query, collection, orderBy, where } from "firebase/firestore";
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonTabBar, IonTabButton, IonIcon, IonLabel, IonAlert, IonButton, IonList, IonItem } from '@ionic/react';
+import { accessibilityOutline, sparklesOutline, barChartOutline } from 'ionicons/icons';
+import { onSnapshot, query, collection, orderBy, where, updateDoc, doc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import db from '../firebaseConfig';
-import { updateDocument } from '../firestoreService';
-import './TrackHabits.css'; 
+import './TrackHabits.css';
 
 interface Habit {
     id: string;
@@ -41,6 +40,7 @@ const TrackHabits: React.FC = () => {
                     console.error("Error fetching tasks:", error);
                     setError("Failed to fetch tasks due to permission issues. Please check your access rights.");
                 });
+
                 return () => unsubscribe();
             } else {
                 setTasks([]);
@@ -49,9 +49,24 @@ const TrackHabits: React.FC = () => {
         });
     }, []);
 
+    useEffect(() => {
+        const timer = setInterval(async () => {
+            const now = new Date();
+            if (now.getHours() === 1 && now.getMinutes() === 0) {
+                for (let task of tasks) {
+                    if (task.completed) {
+                        await updateDoc(doc(db, "users", task.id), { completed: false });
+                    }
+                }
+            }
+        }, 60000);  // Check every minute
+
+        return () => clearInterval(timer);
+    }, [tasks]);
+
     const markCompletion = async (completed: boolean) => {
         if (selectedTask) {
-            await updateDocument('users', selectedTask.id, { completed });
+            await updateDoc(doc(db, 'users', selectedTask.id), { completed });
             setShowAlert(false);
             setSelectedTask(null);
         }
@@ -93,20 +108,20 @@ const TrackHabits: React.FC = () => {
                     ]}
                 />
             </IonContent>
-            <IonTabBar slot="bottom">      
-          <IonTabButton tab="trackhabits" href="/TrackHabits">
-            <IonIcon aria-hidden="true" icon={sparklesOutline} />
-            <IonLabel>Track Habits</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="managehabits" href="/ManageHabits"> 
-            <IonIcon aria-hidden="true" icon={accessibilityOutline} />
-            <IonLabel>Manage Habits</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="analyze" href="/Analyze">
-            <IonIcon aria-hidden="true" icon={barChartOutline} />
-            <IonLabel>Analyze</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
+            <IonTabBar slot="bottom">
+                <IonTabButton tab="trackhabits" href="/TrackHabits">
+                    <IonIcon icon={sparklesOutline} />
+                    <IonLabel>Track Habits</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="managehabits" href="/ManageHabits">
+                    <IonIcon icon={accessibilityOutline} />
+                    <IonLabel>Manage Habits</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="analyze" href="/Analyze">
+                    <IonIcon icon={barChartOutline} />
+                    <IonLabel>Analyze</IonLabel>
+                </IonTabButton>
+            </IonTabBar>
         </IonPage>
     );
 };
