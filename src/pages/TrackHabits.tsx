@@ -3,8 +3,10 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonTabBar, IonTab
 import { accessibilityOutline, sparklesOutline, barChartOutline } from 'ionicons/icons';
 import { onSnapshot, query, collection, orderBy, where, updateDoc, doc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useHistory } from 'react-router-dom';
 import db from '../firebaseConfig';
 import './TrackHabits.css';
+import { signOutUser } from '../authService';
 
 interface Habit {
     id: string;
@@ -24,6 +26,7 @@ const TrackHabits: React.FC = () => {
     const [showAlert, setShowAlert] = useState<boolean>(false);
     const [selectedTask, setSelectedTask] = useState<Habit | null>(null);
     const [error, setError] = useState<string>('');
+    const history = useHistory();
 
     useEffect(() => {
         const auth = getAuth();
@@ -72,10 +75,20 @@ const TrackHabits: React.FC = () => {
         }
     };
 
+    const handleLogout = async () => {
+        try {
+          await signOutUser();
+          history.push('/login');
+        } catch (error) {
+          console.error("Error signing out:", error);
+        }
+      };
+
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
+                <IonButton slot="end" onClick={handleLogout}>Logout</IonButton>
                     <IonTitle>Track Your Habit Completions</IonTitle>
                 </IonToolbar>
             </IonHeader>
