@@ -13,7 +13,7 @@ const Login: React.FC = () => {
         try {
             const user = await signInWithGoogle();
             console.log('User signed in:', user);
-            history.replace('/home'); // This will navigate to home and replace the current entry in the history stack.
+            history.replace('/TrackHabits'); // This will navigate to TrackHabits page and replace the current entry in the history stack.
         } catch (error) {
             console.error('Login failed:', error);
             setErrorMessage("Failed to log in. Please try again.");
